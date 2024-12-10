@@ -1,10 +1,19 @@
-// Interface for Product Model
-interface IProduct extends Document {
+
+// product interface
+export type TProduct = {
     title: string;
     author: string;
     price: number;
-    category: BookCategory;
+    category: 'Fiction' | 'Science' | 'SelfDevelopment' | 'Religious';
     description: string;
     quantity: number;
     inStock: boolean;
+}
+
+// order interface
+export type TOrder = {
+    email: string;
+    product: string;
+    quantity: number;
+    totalPrice: number;
 }

@@ -1,7 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-
-// product model schema
+// product schema
 const productSchema = new Schema(
     {
         title: {
@@ -38,7 +37,42 @@ const productSchema = new Schema(
     },
 );
 
+
+// order schema
+const orderSchema = new Schema(
+    {
+        email: {
+            type: String,
+            required: [true, 'Email is required'],
+            match: [/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, 'Please enter a valid email address'],
+        },
+        product: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product',
+            required: [true, 'Product is required'],
+        },
+        quantity: {
+            type: Number,
+            required: [true, 'Quantity is required'],
+            min: [1, 'Quantity must be at least 1'],
+        },
+        totalPrice: {
+            type: Number,
+            required: [true, 'Total price is required'],
+            min: [0, 'Total price must be a positive number'],
+        },
+    },
+);
+
+
 // product model
 const Product = mongoose.model('Product', productSchema);
 
-export default Product;
+// order model
+const Order = mongoose.model('Order', orderSchema);
+
+
+export default {
+    Product,
+    Order
+};
