@@ -7,13 +7,13 @@ const createProduct = async (payload: TProduct) => {
 }
 
 const getAllProduct = async () => {
-    const products = await Product.find();
-    return products
+    const result = await Product.find();
+    return result;
 }
 
-const getSpecificProduct = async () => {
-    const product = await Product.findOne();
-    return product
+const getSpecificProduct = async (id: string) => {
+    const result = await Product.findById(id);
+    return result;
 }
 
 export const productService = {

@@ -1,7 +1,7 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { productService } from "./product.service";
 
-const createProduct = async (req: Request, res: Response, next: NextFunction) => {
+const createProduct = async (req: Request, res: Response,) => {
     try {
         const payload = req.body;
 
@@ -13,11 +13,16 @@ const createProduct = async (req: Request, res: Response, next: NextFunction) =>
             data: result
         })
     } catch (error) {
-        next(error)
+        res.status(200).json({
+            message: 'Something went wrong with the product. Please try again',
+            success: false,
+            error: error,
+            "stack": "path"
+        })
     }
 };
 
-const getAllProduct = async (req: Request, res: Response, next: NextFunction) => {
+const getAllProduct = async (req: Request, res: Response) => {
     try {
 
         const result = await productService.getAllProduct()
@@ -28,14 +33,21 @@ const getAllProduct = async (req: Request, res: Response, next: NextFunction) =>
             data: result
         })
     } catch (error) {
-        next(error)
+        res.status(200).json({
+            message: 'Something went wrong with the product. Please try again',
+            success: false,
+            error: error,
+            "stack": "path"
+        })
     }
 };
 
-const getSpecificProduct = async (req: Request, res: Response, next: NextFunction) => {
+const getSpecificProduct = async (req: Request, res: Response,) => {
     try {
 
-        const result = await productService.getSpecificProduct()
+        const productId = req.params.productId;
+
+        const result = await productService.getSpecificProduct(productId)
 
         res.status(200).json({
             message: 'Product retrieved successfully',
@@ -43,7 +55,12 @@ const getSpecificProduct = async (req: Request, res: Response, next: NextFunctio
             data: result
         })
     } catch (error) {
-        next(error)
+        res.status(200).json({
+            message: 'Something went wrong with the product. Please try again',
+            success: false,
+            error: error,
+            "stack": "path"
+        })
     }
 };
 
