@@ -1,5 +1,7 @@
 import express from 'express';
-import productRouter from './modules/product/product.router';
+import orderRouter from './modules/order/order.router';
+import bookRouter from './modules/product/product.router';
+
 
 const app = express()
 
@@ -7,7 +9,8 @@ const app = express()
 app.use(express.json());
 
 // endPoint route
-app.use('/api/products', productRouter)
+app.use('/api/products', bookRouter)
+app.use('/api/orders', orderRouter)
 
 app.get('/', (req, res) => {
     res.send('Hello Developments!')

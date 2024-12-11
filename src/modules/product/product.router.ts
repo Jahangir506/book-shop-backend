@@ -1,16 +1,16 @@
 import { Router } from "express";
 import { productController } from "./product.controller";
 
-const productRouter = Router();
+const bookRouter = Router();
 
-productRouter.post('/create-product', productController.createProduct)
+bookRouter.post('/create-book', productController.createBook)
 
-productRouter.get('/', productController.getAllProduct);
+bookRouter.get('/', productController.getAllBook);
 
-productRouter.get('/:productId', productController.getSingleProduct)
+bookRouter.get('/:productId', productController.getSingleBook)
 
-productRouter.put('/:productId', productController.updateProduct)
+bookRouter.put('/:productId', productController.updateBook)
 
-productRouter.delete('/:productId', productController.deleteProduct)
+bookRouter.delete('/:productId', productController.deleteBook)
 
-export default productRouter;
+export default bookRouter;

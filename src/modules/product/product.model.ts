@@ -19,7 +19,7 @@ const productSchema = new Schema<TProduct>(
         },
         category: {
             type: String,
-            enum: ['Fiction', 'Science', 'SelfDevelopment', 'Religious'],
+            enum: ['Fiction', 'Science', 'SelfDevelopment', 'Religious', 'English', 'Programming'],
             required: [true, 'Category is required'],
         },
         description: {
@@ -37,6 +37,7 @@ const productSchema = new Schema<TProduct>(
         },
     },
 );
+
 
 // product model
 const Product = model<TProduct>('Product', productSchema);

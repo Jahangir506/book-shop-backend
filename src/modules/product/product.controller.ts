@@ -1,20 +1,20 @@
 import { Request, Response } from "express";
 import { productService } from "./product.service";
 
-const createProduct = async (req: Request, res: Response,) => {
+const createBook = async (req: Request, res: Response,) => {
     try {
         const payload = req.body;
 
-        const result = await productService.createProduct(payload)
+        const result = await productService.createBook(payload)
 
         res.status(200).json({
-            message: 'Product created successfully',
+            message: 'Book created successfully',
             success: true,
             data: result
         })
     } catch (error) {
         res.status(200).json({
-            message: 'Something went wrong with the product. Please try again',
+            message: 'Something went wrong with the book. Please try again',
             success: false,
             error: error,
             "stack": "path"
@@ -22,13 +22,13 @@ const createProduct = async (req: Request, res: Response,) => {
     }
 };
 
-const getAllProduct = async (req: Request, res: Response) => {
+const getAllBook = async (req: Request, res: Response) => {
     try {
 
-        const result = await productService.getAllProduct()
+        const result = await productService.getAllBook()
 
         res.status(200).json({
-            message: 'Products retrieved successfully',
+            message: 'Books retrieved successfully',
             success: true,
             data: result
         })
@@ -42,15 +42,15 @@ const getAllProduct = async (req: Request, res: Response) => {
     }
 };
 
-const getSingleProduct = async (req: Request, res: Response,) => {
+const getSingleBook = async (req: Request, res: Response,) => {
     try {
 
         const productId = req.params.productId;
 
-        const result = await productService.getSingleProduct(productId)
+        const result = await productService.getSingleBook(productId)
 
         res.status(200).json({
-            message: 'Product retrieved successfully',
+            message: 'Book retrieved successfully',
             success: true,
             data: result
         })
@@ -64,16 +64,16 @@ const getSingleProduct = async (req: Request, res: Response,) => {
     }
 };
 
-const updateProduct = async (req: Request, res: Response) => {
+const updateBook = async (req: Request, res: Response) => {
     try {
 
         const productId = req.params.productId;
         const body = req.body;
 
-        const result = await productService.updateProduct(productId, body)
+        const result = await productService.updateBook(productId, body)
 
         res.status(200).json({
-            message: 'Product updated successfully',
+            message: 'Book updated successfully',
             success: true,
             data: result
         })
@@ -87,12 +87,12 @@ const updateProduct = async (req: Request, res: Response) => {
     }
 };
 
-const deleteProduct = async (req: Request, res: Response) => {
+const deleteBook = async (req: Request, res: Response) => {
     try {
 
         const productId = req.params.productId;
 
-        await productService.deleteProduct(productId)
+        await productService.deleteBook(productId)
 
         res.status(200).json({
             message: 'Product deleted successfully',
@@ -110,9 +110,9 @@ const deleteProduct = async (req: Request, res: Response) => {
 };
 
 export const productController = {
-    createProduct,
-    getAllProduct,
-    getSingleProduct,
-    updateProduct,
-    deleteProduct
+    createBook,
+    getAllBook,
+    getSingleBook,
+    updateBook,
+    deleteBook
 }
