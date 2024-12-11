@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { productService } from "./product.service";
 
-const createBook = async (req: Request, res: Response,) => {
+const createBook = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const payload = req.body;
 
@@ -13,16 +13,11 @@ const createBook = async (req: Request, res: Response,) => {
             data: result
         })
     } catch (error) {
-        res.status(200).json({
-            message: 'Something went wrong with the book. Please try again',
-            success: false,
-            error: error,
-            "stack": "path"
-        })
+        next(error)
     }
 };
 
-const getAllBook = async (req: Request, res: Response) => {
+const getAllBook = async (req: Request, res: Response, next: NextFunction) => {
     try {
 
         const result = await productService.getAllBook()
@@ -33,16 +28,11 @@ const getAllBook = async (req: Request, res: Response) => {
             data: result
         })
     } catch (error) {
-        res.status(200).json({
-            message: 'Something went wrong with the product. Please try again',
-            success: false,
-            error: error,
-            "stack": "path"
-        })
+        next(error)
     }
 };
 
-const getSingleBook = async (req: Request, res: Response,) => {
+const getSingleBook = async (req: Request, res: Response, next: NextFunction) => {
     try {
 
         const productId = req.params.productId;
@@ -55,16 +45,11 @@ const getSingleBook = async (req: Request, res: Response,) => {
             data: result
         })
     } catch (error) {
-        res.status(200).json({
-            message: 'Something went wrong with the product. Please try again',
-            success: false,
-            error: error,
-            "stack": "path"
-        })
+        next(error)
     }
 };
 
-const updateBook = async (req: Request, res: Response) => {
+const updateBook = async (req: Request, res: Response, next: NextFunction) => {
     try {
 
         const productId = req.params.productId;
@@ -78,16 +63,11 @@ const updateBook = async (req: Request, res: Response) => {
             data: result
         })
     } catch (error) {
-        res.status(200).json({
-            message: 'Something went wrong with the product. Please try again',
-            success: false,
-            error: error,
-            "stack": "path"
-        })
+        next(error)
     }
 };
 
-const deleteBook = async (req: Request, res: Response) => {
+const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
     try {
 
         const productId = req.params.productId;
@@ -100,12 +80,7 @@ const deleteBook = async (req: Request, res: Response) => {
             data: {}
         })
     } catch (error) {
-        res.status(200).json({
-            message: 'Something went wrong with the product. Please try again',
-            success: false,
-            error: error,
-            "stack": "path"
-        })
+        next(error)
     }
 };
 

@@ -1,4 +1,3 @@
-
 export type TOrder = {
     email: string;
     product: string, // This will reference the Product model
