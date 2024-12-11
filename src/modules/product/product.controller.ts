@@ -42,12 +42,12 @@ const getAllProduct = async (req: Request, res: Response) => {
     }
 };
 
-const getSpecificProduct = async (req: Request, res: Response,) => {
+const getSingleProduct = async (req: Request, res: Response,) => {
     try {
 
         const productId = req.params.productId;
 
-        const result = await productService.getSpecificProduct(productId)
+        const result = await productService.getSingleProduct(productId)
 
         res.status(200).json({
             message: 'Product retrieved successfully',
@@ -64,9 +64,32 @@ const getSpecificProduct = async (req: Request, res: Response,) => {
     }
 };
 
+const updateProduct = async (req: Request, res: Response) => {
+    try {
+
+        const productId = req.params.productId;
+        const body = req.body;
+
+        const result = await productService.updateProduct(productId, body)
+
+        res.status(200).json({
+            message: 'Product updated successfully',
+            success: true,
+            data: result
+        })
+    } catch (error) {
+        res.status(200).json({
+            message: 'Something went wrong with the product. Please try again',
+            success: false,
+            error: error,
+            "stack": "path"
+        })
+    }
+};
 
 export const productController = {
     createProduct,
     getAllProduct,
-    getSpecificProduct
+    getSingleProduct,
+    updateProduct
 }

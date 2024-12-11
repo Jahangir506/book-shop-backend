@@ -6,7 +6,7 @@ const app = express()
 //middleware
 app.use(express.json());
 
-
+// endPoint route
 app.use('/api/products', productRouter)
 
 app.get('/', (req, res) => {

@@ -11,13 +11,20 @@ const getAllProduct = async () => {
     return result;
 }
 
-const getSpecificProduct = async (id: string) => {
+const getSingleProduct = async (id: string) => {
     const result = await Product.findById(id);
+    return result;
+}
+
+
+const updateProduct = async (id: string, data: TProduct) => {
+    const result = await Product.findByIdAndUpdate(id, data, { upsert: true, new: true });
     return result;
 }
 
 export const productService = {
     createProduct,
     getAllProduct,
-    getSpecificProduct
+    getSingleProduct,
+    updateProduct
 }
