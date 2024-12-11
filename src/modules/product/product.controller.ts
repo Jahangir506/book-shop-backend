@@ -1,11 +1,16 @@
 import { NextFunction, Request, Response } from "express";
 import { productService } from "./product.service";
+import productValidationSchema from "./product.validation";
 
 const createBook = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const payload = req.body;
 
-        const result = await productService.createBook(payload)
+        const product = req.body;
+
+        // data validation use to zod 
+        const zodParseData = productValidationSchema.parse(product)
+
+        const result = await productService.createBook(zodParseData)
 
         res.status(200).json({
             message: 'Book created successfully',

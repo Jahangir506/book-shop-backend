@@ -1,8 +1,8 @@
 import { TProduct } from "./product.interface";
 import Product from "./product.model";
 
-const createBook = async (payload: TProduct) => {
-    const result = await Product.create(payload)
+const createBook = async (product: TProduct) => {
+    const result = await Product.create(product)
     return result;
 }
 
