@@ -1,30 +1,30 @@
-import { TProduct } from "./product.interface";
+import { TBook } from "./product.interface";
 import Product from "./product.model";
 
-const createBook = async (product: TProduct) => {
-    const result = await Product.create(product)
-    return result;
+const createBook = async (bookData: TBook) => {
+    const product = await Product.create(bookData)
+    return product;
 }
 
 const getAllBook = async () => {
-    const result = await Product.find();
-    return result;
+    const product = await Product.find();
+    return product;
 }
 
 const getSingleBook = async (id: string) => {
-    const result = await Product.findById(id);
-    return result;
+    const product = await Product.findById(id);
+    return product;
 }
 
 
-const updateBook = async (id: string, data: TProduct) => {
-    const result = await Product.findByIdAndUpdate(id, data, { upsert: true, new: true });
-    return result;
+const updateBook = async (id: string, data: TBook) => {
+    const product = await Product.findByIdAndUpdate(id, data, { upsert: true, new: true });
+    return product;
 }
 
 const deleteBook = async (id: string) => {
-    const result = await Product.findByIdAndDelete(id);
-    return result;
+    const product = await Product.findByIdAndDelete(id);
+    return product;
 }
 
 export const productService = {

@@ -1,16 +1,16 @@
-import { Router } from "express";
-import { productController } from "./product.controller";
+import { Router } from 'express';
+import { productController } from './product.controller';
 
 const productRouter = Router();
 
-productRouter.post('/create-book', productController.createBook)
+productRouter.post('/', productController.createBook);
 
 productRouter.get('/', productController.getAllBook);
 
-productRouter.get('/:productId', productController.getSingleBook)
+productRouter.get('/:productId', productController.getSingleBook);
 
-productRouter.put('/:productId', productController.updateBook)
+productRouter.put('/:productId', productController.updateBook);
 
-productRouter.delete('/:productId', productController.deleteBook)
+productRouter.delete('/:productId', productController.deleteBook);
 
 export default productRouter;

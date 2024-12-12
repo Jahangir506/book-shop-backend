@@ -1,19 +1,23 @@
-
 // product interface
-export type TProduct = {
-    title: string;
-    author: string;
-    price: number;
-    category: 'Fiction' | 'Science' | 'SelfDevelopment' | 'Religious' | 'English' | 'Programming';
-    description: string;
-    quantity: number;
-    inStock: boolean;
-}
+export type TBook = {
+  title: string;
+  author: string;
+  price: number;
+  category:
+    | 'Fiction'
+    | 'Science'
+    | 'SelfDevelopment'
+    | 'Religious'
+    | 'English'
+    | 'Programming';
+  description: string;
+  quantity: number;
+  inStock: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+};
 
-// order interface
-export type TOrder = {
-    email: string;
-    product: string;
-    quantity: number;
-    totalPrice: number;
-}
+// // creating static
+// export interface ProductModel extends Model<TProduct> {
+//     isBookExists(id: string): Promise<TProduct | null>
+// }

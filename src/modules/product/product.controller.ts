@@ -1,98 +1,96 @@
-import { NextFunction, Request, Response } from "express";
-import { productService } from "./product.service";
-import productValidationSchema from "./product.validation";
+import { NextFunction, Request, Response } from 'express';
+import { productService } from './product.service';
+import productValidationSchema from './product.validation';
 
 const createBook = async (req: Request, res: Response, next: NextFunction) => {
-    try {
+  try {
+    const product = req.body;
 
-        const product = req.body;
+    const zodParseData = productValidationSchema.parse(product);
 
-        // data validation use to zod 
-        const zodParseData = productValidationSchema.parse(product)
+    const result = await productService.createBook(zodParseData);
 
-        const result = await productService.createBook(zodParseData)
-
-        res.status(200).json({
-            message: 'Book created successfully',
-            success: true,
-            data: result
-        })
-    } catch (error) {
-        next(error)
-    }
+    res.status(200).json({
+      message: 'Book created successfully',
+      success: true,
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 const getAllBook = async (req: Request, res: Response, next: NextFunction) => {
-    try {
+  try {
+    const result = await productService.getAllBook();
 
-        const result = await productService.getAllBook()
-
-        res.status(200).json({
-            message: 'Books retrieved successfully',
-            success: true,
-            data: result
-        })
-    } catch (error) {
-        next(error)
-    }
+    res.status(200).json({
+      message: 'Books retrieved successfully',
+      success: true,
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
-const getSingleBook = async (req: Request, res: Response, next: NextFunction) => {
-    try {
+const getSingleBook = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const productId = req.params.productId;
 
-        const productId = req.params.productId;
+    const result = await productService.getSingleBook(productId);
 
-        const result = await productService.getSingleBook(productId)
-
-        res.status(200).json({
-            message: 'Book retrieved successfully',
-            success: true,
-            data: result
-        })
-    } catch (error) {
-        next(error)
-    }
+    res.status(200).json({
+      message: 'Book retrieved successfully',
+      success: true,
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 const updateBook = async (req: Request, res: Response, next: NextFunction) => {
-    try {
+  try {
+    const productId = req.params.productId;
+    const body = req.body;
 
-        const productId = req.params.productId;
-        const body = req.body;
+    const result = await productService.updateBook(productId, body);
 
-        const result = await productService.updateBook(productId, body)
-
-        res.status(200).json({
-            message: 'Book updated successfully',
-            success: true,
-            data: result
-        })
-    } catch (error) {
-        next(error)
-    }
+    res.status(200).json({
+      message: 'Book updated successfully',
+      success: true,
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
-    try {
+  try {
+    const productId = req.params.productId;
 
-        const productId = req.params.productId;
+    await productService.deleteBook(productId);
 
-        await productService.deleteBook(productId)
-
-        res.status(200).json({
-            message: 'Product deleted successfully',
-            success: true,
-            data: {}
-        })
-    } catch (error) {
-        next(error)
-    }
+    res.status(200).json({
+      message: 'Product deleted successfully',
+      success: true,
+      data: {},
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const productController = {
-    createBook,
-    getAllBook,
-    getSingleBook,
-    updateBook,
-    deleteBook
-}
+  createBook,
+  getAllBook,
+  getSingleBook,
+  updateBook,
+  deleteBook,
+};
