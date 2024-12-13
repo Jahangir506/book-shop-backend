@@ -6,11 +6,9 @@ const orderValidationSchema = z.object({
     .string()
     .email({ message: 'Email is not valid' })
     .nonempty({ message: 'Email is required' }),
-  product: z
-    .string()
-    .refine((id) => Types.ObjectId.isValid(id), {
-      message: "Invalid product ID",
-    }),
+  product: z.string().refine((id) => Types.ObjectId.isValid(id), {
+    message: '{VALUE} is not a valid email',
+  }),
   quantity: z
     .number()
     .min(1, { message: 'Quantity must be at least 1' })

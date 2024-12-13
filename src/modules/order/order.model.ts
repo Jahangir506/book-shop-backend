@@ -11,7 +11,8 @@ const orderSchema = new Schema<TOrder>(
         validator: (value: string) => {
           return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value);
         },
-        message: (props: { value: string }) => `${props.value} is not a valid email`,
+        message: (props: { value: string }) =>
+          `${props.value} is not a valid email`,
       },
     },
     product: {
@@ -34,7 +35,6 @@ const orderSchema = new Schema<TOrder>(
     timestamps: true,
   }
 );
-
 
 // order model
 const Order = model<TOrder>('Order', orderSchema);

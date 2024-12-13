@@ -1,8 +1,8 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { productService } from './product.service';
 import productValidationSchema from './product.validation';
 
-const createBook = async (req: Request, res: Response, next: NextFunction) => {
+const createBook = async (req: Request, res: Response) => {
   try {
     const product = req.body;
 
@@ -16,11 +16,16 @@ const createBook = async (req: Request, res: Response, next: NextFunction) => {
       data: result,
     });
   } catch (error) {
-    next(error);
+    res.status(200).json({
+      message: 'ValidationError',
+      success: false,
+      error: error,
+      stack: 'path',
+    });
   }
 };
 
-const getAllBook = async (req: Request, res: Response, next: NextFunction) => {
+const getAllBook = async (req: Request, res: Response) => {
   try {
     const result = await productService.getAllBook();
 
@@ -30,15 +35,16 @@ const getAllBook = async (req: Request, res: Response, next: NextFunction) => {
       data: result,
     });
   } catch (error) {
-    next(error);
+    res.status(200).json({
+      message: 'ValidationError',
+      success: false,
+      error: error,
+      stack: 'path',
+    });
   }
 };
 
-const getSingleBook = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const getSingleBook = async (req: Request, res: Response) => {
   try {
     const productId = req.params.productId;
 
@@ -50,11 +56,16 @@ const getSingleBook = async (
       data: result,
     });
   } catch (error) {
-    next(error);
+    res.status(200).json({
+      message: 'ValidationError',
+      success: false,
+      error: error,
+      stack: 'path',
+    });
   }
 };
 
-const updateBook = async (req: Request, res: Response, next: NextFunction) => {
+const updateBook = async (req: Request, res: Response) => {
   try {
     const productId = req.params.productId;
     const body = req.body;
@@ -67,11 +78,16 @@ const updateBook = async (req: Request, res: Response, next: NextFunction) => {
       data: result,
     });
   } catch (error) {
-    next(error);
+    res.status(200).json({
+      message: 'ValidationError',
+      success: false,
+      error: error,
+      stack: 'path',
+    });
   }
 };
 
-const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
+const deleteBook = async (req: Request, res: Response) => {
   try {
     const productId = req.params.productId;
 
@@ -83,7 +99,12 @@ const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
       data: {},
     });
   } catch (error) {
-    next(error);
+    res.status(200).json({
+      message: 'ValidationError',
+      success: false,
+      error: error,
+      stack: 'path',
+    });
   }
 };
 

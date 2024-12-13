@@ -29,11 +29,9 @@ const productValidationSchema = z.object({
     .refine((value) => Number.isInteger(value), {
       message: 'Quantity must be an integer',
     }),
-  inStock: z
-    .boolean()
-    .refine((value) => typeof value === 'boolean', {
-      message: 'InStock status is required',
-    }),
+  inStock: z.boolean().refine((value) => typeof value === 'boolean', {
+    message: 'InStock status is required',
+  }),
 });
 
 export default productValidationSchema;

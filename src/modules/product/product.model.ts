@@ -63,6 +63,3 @@ const bookSchema = new Schema<TBook>(
 const Product = model<TBook>('Product', bookSchema);
 
 export default Product;
-
-
-

@@ -1,8 +1,8 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express, { Application, Request, Response } from 'express';
 import orderRouter from './modules/order/order.router';
 import productRouter from './modules/product/product.router';
 
-const app = express();
+const app: Application = express();
 
 //middleware
 app.use(express.json());
@@ -20,17 +20,6 @@ app.all('*', (req: Request, res: Response) => {
     message: 'Route is not found.',
     success: false,
   });
-});
-
-app.use((error: any, req: Request, res: Response, next: NextFunction) => {
-  if (error) {
-    res.status(200).json({
-      message: 'ValidationError',
-      success: false,
-      error: error,
-      stack: 'path',
-    });
-  }
 });
 
 export default app;
