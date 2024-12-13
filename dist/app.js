@@ -17,18 +17,13 @@ const express_1 = __importDefault(require("express"));
 const order_router_1 = __importDefault(require("./modules/order/order.router"));
 const product_router_1 = __importDefault(require("./modules/product/product.router"));
 const app = (0, express_1.default)();
-const corsConfig = {
-    origin: '*',
-    credential: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE']
-};
 app.use(express_1.default.json());
-app.use((0, cors_1.default)(corsConfig));
+app.use((0, cors_1.default)());
 app.use('/api/products', product_router_1.default);
 app.use('/api/orders', order_router_1.default);
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        res.send('📖 Welcome to book shops. Come and buy books.');
+        res.send('📖 Welcome to book shop. Come and buy books.');
     }
     catch (error) {
         res.status(404).json({

@@ -17,15 +17,15 @@ const orderBook = async (req: Request, res: Response): Promise<void> => {
     res.status(200).json({
       message: 'ValidationError',
       success: false,
-      error: error,
+      error,
       stack: 'path',
     });
   }
 };
 
-const totalPrice = async (req: Request, res: Response): Promise<void> => {
+const orderTotalPrice = async (req: Request, res: Response): Promise<void> => {
   try {
-    const result = await orderService.totalPrice();
+    const result = await orderService.orderTotalPrice();
 
     res.status(200).json({
       message: 'Revenue calculated successfull',
@@ -36,7 +36,7 @@ const totalPrice = async (req: Request, res: Response): Promise<void> => {
     res.status(200).json({
       message: 'ValidationError',
       success: false,
-      error: error,
+      error,
       stack: 'path',
     });
   }
@@ -44,5 +44,5 @@ const totalPrice = async (req: Request, res: Response): Promise<void> => {
 
 export const orderController = {
   orderBook,
-  totalPrice,
+  orderTotalPrice,
 };
