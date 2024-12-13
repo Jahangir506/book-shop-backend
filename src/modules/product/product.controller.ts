@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { productService } from './product.service';
 import productValidationSchema from './product.validation';
 
-const createBook = async (req: Request, res: Response) => {
+const createBook = async (req: Request, res: Response): Promise<void> => {
   try {
     const product = req.body;
 
@@ -25,7 +25,7 @@ const createBook = async (req: Request, res: Response) => {
   }
 };
 
-const getAllBook = async (req: Request, res: Response) => {
+const getAllBook = async (req: Request, res: Response): Promise<void> => {
   try {
     const result = await productService.getAllBook();
 
@@ -44,7 +44,7 @@ const getAllBook = async (req: Request, res: Response) => {
   }
 };
 
-const getSingleBook = async (req: Request, res: Response) => {
+const getSingleBook = async (req: Request, res: Response): Promise<void> => {
   try {
     const productId = req.params.productId;
 
@@ -65,7 +65,7 @@ const getSingleBook = async (req: Request, res: Response) => {
   }
 };
 
-const updateBook = async (req: Request, res: Response) => {
+const updateBook = async (req: Request, res: Response): Promise<void> => {
   try {
     const productId = req.params.productId;
     const body = req.body;
@@ -87,7 +87,7 @@ const updateBook = async (req: Request, res: Response) => {
   }
 };
 
-const deleteBook = async (req: Request, res: Response) => {
+const deleteBook = async (req: Request, res: Response): Promise<void> => {
   try {
     const productId = req.params.productId;
 

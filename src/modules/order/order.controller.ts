@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { orderService } from './order.service';
 import orderValidationSchema from './order.validation';
 
-const orderBook = async (req: Request, res: Response) => {
+const orderBook = async (req: Request, res: Response): Promise<void> => {
   try {
     const order = req.body;
     const zodParseData = orderValidationSchema.parse(order);
@@ -23,7 +23,7 @@ const orderBook = async (req: Request, res: Response) => {
   }
 };
 
-const totalPrice = async (req: Request, res: Response) => {
+const totalPrice = async (req: Request, res: Response): Promise<void> => {
   try {
     const result = await orderService.totalPrice();
 
