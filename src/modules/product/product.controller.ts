@@ -25,9 +25,21 @@ const createBook = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+
 const getAllBook = async (req: Request, res: Response): Promise<void> => {
   try {
-    const result = await productService.getAllBook();
+
+    const searchTerm = req.query.searchTerm || '';
+
+    const query = {
+      $or: [
+        { title: { $regex: searchTerm, $options: 'i' } },
+        { author: { $regex: searchTerm, $options: 'i' } },
+        { category: { $regex: searchTerm, $options: 'i' } },
+      ],
+    };
+
+    const result = await productService.getAllBook(query);
 
     res.status(200).json({
       message: 'Books retrieved successfully',

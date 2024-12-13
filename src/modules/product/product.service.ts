@@ -6,8 +6,8 @@ const createBook = async (bookData: TBook) => {
   return product;
 };
 
-const getAllBook = async () => {
-  const product = await Product.find();
+const getAllBook = async (query: TBook) => {
+  const product = await Product.find(query);
   return product;
 };
 
