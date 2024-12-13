@@ -1,7 +1,6 @@
 import { model, Schema } from 'mongoose';
 import { TBook } from './product.interface';
 
-// product schema
 const bookSchema = new Schema<TBook>(
   {
     title: {
@@ -48,18 +47,6 @@ const bookSchema = new Schema<TBook>(
   }
 );
 
-// // creating a custom static method
-// productSchema.statics.isBookExists = async function (id: string) {
-//     const existingBook = await Product.findOne({ id })
-//     return existingBook;
-// }
-
-// bookSchema.pre('find', function (this: any, next: NextFunction) {
-//   this.find({ inStock: 'false' })
-//   next()
-// })
-
-// product model
 const Product = model<TBook>('Product', bookSchema);
 
 export default Product;
