@@ -17,8 +17,13 @@ const express_1 = __importDefault(require("express"));
 const order_router_1 = __importDefault(require("./modules/order/order.router"));
 const product_router_1 = __importDefault(require("./modules/product/product.router"));
 const app = (0, express_1.default)();
+const corsConfig = {
+    origin: '*',
+    credential: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+};
 app.use(express_1.default.json());
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)(corsConfig));
 app.use('/api/products', product_router_1.default);
 app.use('/api/orders', order_router_1.default);
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -32,10 +37,11 @@ app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
 }));
-app.all('*', (req, res) => {
+app.all('*', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(400).json({
         message: 'Route is not found.',
         success: false,
     });
-});
+    next();
+}));
 exports.default = app;
