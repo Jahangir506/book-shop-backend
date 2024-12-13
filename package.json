@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node ./dist/server.js",
-    "start:prod": "nodemon ./dist/server.js",
+    "start": "node /dist/server.js",
+    "start:prod": "nodemon /dist/server.js",
     "start:dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build:watch": "tsc --watch",
     "build": "tsc",
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.16.0",
+    "@types/cors": "^2.8.17",
     "@types/eslint__js": "^8.42.3",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.1",
