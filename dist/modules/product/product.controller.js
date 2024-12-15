@@ -37,7 +37,15 @@ const createBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 const getAllBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield product_service_1.productService.getAllBook();
+        const searchTerm = req.query.searchTerm || '';
+        const query = {
+            $or: [
+                { title: { $regex: searchTerm, $options: 'i' } },
+                { author: { $regex: searchTerm, $options: 'i' } },
+                { category: { $regex: searchTerm, $options: 'i' } },
+            ],
+        };
+        const result = yield product_service_1.productService.getAllBook(query);
         res.status(200).json({
             message: 'Books retrieved successfully',
             success: true,

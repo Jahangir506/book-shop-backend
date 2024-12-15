@@ -26,10 +26,11 @@ const createBook = async (req: Request, res: Response): Promise<void> => {
 };
 
 
+
 const getAllBook = async (req: Request, res: Response): Promise<void> => {
   try {
 
-    const searchTerm = req.query.searchTerm || '';
+    const searchTerm: string = req.query.searchTerm as string || '';
 
     const query = {
       $or: [

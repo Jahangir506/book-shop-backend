@@ -13,29 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.orderService = void 0;
-const product_model_1 = __importDefault(require("../product/product.model"));
 const order_model_1 = __importDefault(require("./order.model"));
-const orderBook = (order) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email, product, quantity, totalPrice } = order;
-    const productDoc = yield product_model_1.default.findById(product);
-    if (!productDoc) {
-        throw new Error('Product not found');
-    }
-    if (productDoc.quantity < quantity) {
-        throw new Error('Product is out of stock');
-    }
-    productDoc.quantity -= quantity;
-    productDoc.inStock = productDoc.quantity > 0;
-    yield productDoc.save();
-    const newOrder = yield order_model_1.default.create({
-        email,
-        product: productDoc._id,
-        quantity,
-        totalPrice,
-    });
-    return newOrder;
+const orderBook = (orderData) => __awaiter(void 0, void 0, void 0, function* () {
+    const orderBook = yield order_model_1.default.create(orderData);
+    return orderBook;
 });
-const totalPrice = () => __awaiter(void 0, void 0, void 0, function* () {
+const orderTotalPrice = () => __awaiter(void 0, void 0, void 0, function* () {
     const [result] = yield order_model_1.default.aggregate([
         {
             $group: {
@@ -54,5 +37,5 @@ const totalPrice = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.orderService = {
     orderBook,
-    totalPrice,
+    orderTotalPrice
 };

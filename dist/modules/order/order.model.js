@@ -9,12 +9,11 @@ const orderSchema = new mongoose_1.Schema({
             validator: (value) => {
                 return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value);
             },
-            message: (props) => `${props.value} is not a valid email`,
+            message: '{VALUE} is not a valid email!',
         },
     },
     product: {
         type: String,
-        ref: 'Product',
         required: [true, 'Product is required'],
     },
     quantity: {
@@ -25,7 +24,7 @@ const orderSchema = new mongoose_1.Schema({
     totalPrice: {
         type: Number,
         required: [true, 'Total price is required'],
-        min: [0, 'Total price must be a positive number'],
+        min: [0, 'Please, total price must be a positive number'],
     },
 }, {
     timestamps: true,

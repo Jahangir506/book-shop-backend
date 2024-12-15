@@ -4,5 +4,5 @@ const express_1 = require("express");
 const order_controller_1 = require("./order.controller");
 const orderRouter = (0, express_1.Router)();
 orderRouter.post('/', order_controller_1.orderController.orderBook);
-orderRouter.get('/revenue', order_controller_1.orderController.totalPrice);
+orderRouter.get('/revenue', order_controller_1.orderController.orderTotalPrice);
 exports.default = orderRouter;

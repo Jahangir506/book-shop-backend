@@ -18,8 +18,8 @@ const createBook = (bookData) => __awaiter(void 0, void 0, void 0, function* () 
     const product = yield product_model_1.default.create(bookData);
     return product;
 });
-const getAllBook = () => __awaiter(void 0, void 0, void 0, function* () {
-    const product = yield product_model_1.default.find();
+const getAllBook = (query) => __awaiter(void 0, void 0, void 0, function* () {
+    const product = yield product_model_1.default.find(query);
     return product;
 });
 const getSingleBook = (id) => __awaiter(void 0, void 0, void 0, function* () {

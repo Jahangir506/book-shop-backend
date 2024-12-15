@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
 import Product from '../product/product.model';
 import Order from './order.model';
 import { orderService } from './order.service';
 import orderValidationSchema from './order.validation';
 
-const orderBook = async (req: Request, res: Response) => {
+const orderBook = async (req: Request, res: Response): Promise<any> => {
   try {
     const order = req.body;
     const zodParseData = orderValidationSchema.parse(order);
@@ -24,6 +25,12 @@ const orderBook = async (req: Request, res: Response) => {
         message: "Product is out of stock"
       })
     }
+
+    productDoc.quantity -= quantity
+    if (productDoc.quantity === 0) {
+      productDoc.inStock = false;
+    }
+
 
     await productDoc.save()
 

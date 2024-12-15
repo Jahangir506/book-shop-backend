@@ -40,6 +40,7 @@ const bookSchema = new Schema<TBook>(
     inStock: {
       type: Boolean,
       required: [true, 'InStock status is required'],
+      default: true
     },
   },
   {
