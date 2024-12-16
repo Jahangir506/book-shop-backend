@@ -14,7 +14,6 @@ This is a backend app for managing a book store. It helps with tasks like adding
     4. Project Structure
     5. Usage
     6. Questions
-
 ## Features and Implement
 
 1. **Product Management (books)**:
@@ -142,11 +141,25 @@ book-shop-api/
   - `searchTerm`: Filter books by title, author, or category.
 - **Response:**
   ```json
-  {
-    "message": "Books retrieved successfully",
-    "success": true,
-    "data": [ ... ]
-  }
+ {
+  "message": "Books retrieved successfully",
+  "status": true,
+  "data": [
+    {
+      "_id": "648a45e5f0123c45678d9012",
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "price": 10,
+      "category": "Fiction",
+      "description": "A story about the American dream.",
+      "quantity": 100,
+      "inStock": true,
+      "createdAt": "2024-11-19T10:23:45.123Z",
+      "updatedAt": "2024-11-19T10:23:45.123Z",
+    },
+    // ... rest data
+  ]
+}
   ```
 
 #### 3. Get a Specific Book
@@ -154,11 +167,22 @@ book-shop-api/
 - **Method:** `GET`
 - **Response:**
   ```json
-  {
-    "message": "Book retrieved successfully",
-    "success": true,
-    "data": { ... }
+ {
+  "message": "Book retrieved successfully",
+  "status": true,
+  "data": {
+    "_id": "648a45e5f0123c45678d9012",
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "price": 10,
+    "category": "Fiction",
+    "description": "A story about the American dream.",
+    "quantity": 100,
+    "inStock": true,
+    "createdAt": "2024-11-19T10:23:45.123Z",
+    "updatedAt": "2024-11-19T10:23:45.123Z",
   }
+}
   ```
 
 #### 4. Update a Book
@@ -174,10 +198,21 @@ book-shop-api/
 - **Response:**
   ```json
   {
-    "message": "Book updated successfully",
-    "success": true,
-    "data": { ... }
+  "message": "Book updated successfully",
+  "status": true,
+  "data": {
+    "_id": "648a45e5f0123c45678d9012",
+    "name": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "price": 15,  // Price updated
+    "category": "Fiction",
+    "description": "A story about the American dream.",
+    "quantity": 25,  // Quantity updated
+    "inStock": true,
+    "createdAt": "2024-11-19T10:23:45.123Z",
+    "updatedAt": "2024-11-19T11:00:00.000Z",  // Updated timestamp
   }
+}
   ```
 
 #### 5. Delete a Book
@@ -186,10 +221,10 @@ book-shop-api/
 - **Response:**
   ```json
   {
-    "message": "Book deleted successfully",
-    "success": true,
-    "data": {}
-  }
+  "message": "Book deleted successfully",
+  "status": true,
+  "data": {}
+}
   ```
 
 ### Orders
@@ -199,20 +234,28 @@ book-shop-api/
 - **Method:** `POST`
 - **Request Body:**
   ```json
-  {
-    "email": "customer@example.com",
-    "product": "648a45e5f0123c45678d9012",
-    "quantity": 2,
-    "totalPrice": 30
-  }
+ {
+  "email": "customer@example.com",
+  "product": "648a45e5f0123c45678d9012",
+  "quantity": 2,
+  "totalPrice": 30
+}
   ```
 - **Response:**
   ```json
-  {
-    "message": "Order created successfully",
-    "success": true,
-    "data": { ... }
+ {
+  "message": "Order created successfully",
+  "status": true,
+  "data": {
+    "_id": "648b45f5e1234b56789a6789",
+    "email": "customer@example.com",
+    "product": "648a45e5f0123c45678d9012",
+    "quantity": 2,
+    "totalPrice": 30,
+    "createdAt": "2024-11-19T12:00:00.000Z",
+    "updatedAt": "2024-11-19T12:00:00.000Z",
   }
+}
   ```
 
 #### 2. Calculate Total Revenue
@@ -220,13 +263,13 @@ book-shop-api/
 - **Method:** `GET`
 - **Response:**
   ```json
-  {
-    "message": "Revenue calculated successfully",
-    "success": true,
-    "data": {
-      "totalRevenue": 450
-    }
+ {
+  "message": "Revenue calculated successfully",
+  "status": true,
+  "data": {
+    "totalRevenue": 450  // Total revenue calculated from all orders
   }
+}
   ```
 ## Contact
 
