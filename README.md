@@ -213,7 +213,7 @@ book-shop-api/
     "updatedAt": "2024-11-19T11:00:00.000Z",  // Updated timestamp
   }
 }
-  ```
+``
 
 #### 5. Delete a Book
 - **Endpoint:** `/api/products/:productId`
@@ -225,7 +225,7 @@ book-shop-api/
   "status": true,
   "data": {}
 }
-  ```
+```
 
 ### Orders
 
@@ -274,5 +274,5 @@ book-shop-api/
 ## Contact
 
 If you have any questions or feedback, feel free to reach out:
-- **Email:** [Mail](md.jahangir.alam9649@gmail.com).
+- **Email:** md.jahangir.alam9649@gmail.com
 - **Github:**[Jahangir506](https://github.com/Jahangir506).
