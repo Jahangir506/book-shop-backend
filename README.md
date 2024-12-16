@@ -140,7 +140,7 @@ book-shop-api/
 - **Query Parameters:**
   - `searchTerm`: Filter books by title, author, or category.
 - **Response:**
-  ```json
+```json
  {
   "message": "Books retrieved successfully",
   "status": true,
@@ -166,7 +166,7 @@ book-shop-api/
 - **Endpoint:** `/api/products/:productId`
 - **Method:** `GET`
 - **Response:**
-  ```json
+```json
  {
   "message": "Book retrieved successfully",
   "status": true,
@@ -219,7 +219,7 @@ book-shop-api/
 - **Endpoint:** `/api/products/:productId`
 - **Method:** `DELETE`
 - **Response:**
-  ```json
+```json
   {
   "message": "Book deleted successfully",
   "status": true,
@@ -233,7 +233,7 @@ book-shop-api/
 - **Endpoint:** `/api/orders`
 - **Method:** `POST`
 - **Request Body:**
-  ```json
+```json
  {
   "email": "customer@example.com",
   "product": "648a45e5f0123c45678d9012",
@@ -242,7 +242,7 @@ book-shop-api/
 }
   ```
 - **Response:**
-  ```json
+```json
  {
   "message": "Order created successfully",
   "status": true,
@@ -262,7 +262,7 @@ book-shop-api/
 - **Endpoint:** `/api/orders/revenue`
 - **Method:** `GET`
 - **Response:**
-  ```json
+```json
  {
   "message": "Revenue calculated successfully",
   "status": true,
@@ -274,5 +274,5 @@ book-shop-api/
 ## Contact
 
 If you have any questions or feedback, feel free to reach out:
-- **Email:**md.jahangir.alam9649@gmail.com
-- **Github:**https://github.com/Jahangir506
+- **Email:** [Mail](md.jahangir.alam9649@gmail.com).
+- **Github:**[Jahangir506](https://github.com/Jahangir506).
