@@ -41,7 +41,7 @@ const createOrderBook = async (req: Request, res: Response): Promise<void> => {
       totalPrice
     })
 
-    const allOrderBook = await orderService.orderBook(updateOrder);
+    const allOrderBook = await orderService.createOrderBook(updateOrder);
 
     res.status(200).json({
       message: 'Order created successfully',
@@ -58,9 +58,9 @@ const createOrderBook = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-const orderTotalRevenue = async (req: Request, res: Response): Promise<void> => {
+const orderTotalRevenuePrice = async (req: Request, res: Response): Promise<void> => {
   try {
-    const result = await orderService.orderTotalPrice();
+    const result = await orderService.orderTotalRevenue();
 
     res.status(200).json({
       message: 'Revenue calculated successfull',
@@ -79,5 +79,5 @@ const orderTotalRevenue = async (req: Request, res: Response): Promise<void> => 
 
 export const orderController = {
   createOrderBook,
-  orderTotalRevenue,
+  orderTotalRevenuePrice,
 };

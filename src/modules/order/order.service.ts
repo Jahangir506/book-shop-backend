@@ -1,12 +1,12 @@
-import { TOrder } from './order.interface';
+import { TOrderBook } from './order.interface';
 import Order from './order.model';
 
-const orderBook = async (orderData: TOrder) => {
+const createOrderBook = async (orderData: TOrderBook) => {
   const orderBook = await Order.create(orderData);
   return orderBook;
 };
 
-const orderTotalPrice = async () => {
+const orderTotalRevenue = async () => {
   const [result] = await Order.aggregate([
     {
       $group: {
@@ -25,6 +25,6 @@ const orderTotalPrice = async () => {
 };
 
 export const orderService = {
-  orderBook,
-  orderTotalPrice,
+  createOrderBook,
+  orderTotalRevenue,
 };

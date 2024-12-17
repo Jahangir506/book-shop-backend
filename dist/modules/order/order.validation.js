@@ -7,21 +7,18 @@ const orderValidationSchema = zod_1.z.object({
         .string()
         .email({ message: 'Email is not valid' })
         .nonempty({ message: 'Email is required' }),
-    product: zod_1.z.string().refine((id) => mongoose_1.Types.ObjectId.isValid(id), {
-        message: '{VALUE} is not a valid email',
+    product: zod_1.z
+        .string()
+        .refine((id) => mongoose_1.Types.ObjectId.isValid(id), {
+        message: 'Product ID is not valid',
     }),
     quantity: zod_1.z
-        .number()
-        .min(1, { message: 'Quantity must be at least 1' })
-        .refine((value) => Number.isInteger(value), {
-        message: 'Quantity must be an integer',
-    }),
+        .number({ message: 'Quantity must be a number' })
+        .int({ message: 'Quantity must be an integer' })
+        .min(1, { message: 'Quantity must be at least 1' }),
     totalPrice: zod_1.z
-        .number()
-        .min(0, { message: 'Total price must be a positive number' })
-        .refine((value) => !isNaN(value), {
-        message: 'Total price must be a valid number',
-    }),
+        .number({ message: 'Total price must be a number' })
+        .min(0, { message: 'Total price must be a positive number' }),
     createdAt: zod_1.z.date().optional(),
     updatedAt: zod_1.z.date().optional(),
 });

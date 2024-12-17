@@ -17,38 +17,40 @@ const product_model_1 = __importDefault(require("../product/product.model"));
 const order_model_1 = __importDefault(require("./order.model"));
 const order_service_1 = require("./order.service");
 const order_validation_1 = __importDefault(require("./order.validation"));
-const orderBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const createOrderBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const order = req.body;
-        const zodParseData = order_validation_1.default.parse(order);
+        const orderBookData = req.body;
+        const zodParseData = order_validation_1.default.parse(orderBookData);
         const { email, product, quantity, totalPrice } = zodParseData;
-        const productDoc = yield product_model_1.default.findById(product);
-        if (!productDoc) {
-            return res.status(404).json({
+        const orderBook = yield product_model_1.default.findById(product);
+        if (!orderBook) {
+            res.status(404).json({
                 message: "Prodcut not found"
             });
+            return;
         }
-        if (productDoc.quantity < quantity) {
-            return res.status(404).json({
+        if (orderBook.quantity < quantity) {
+            res.status(404).json({
                 message: "Product is out of stock"
             });
+            return;
         }
-        productDoc.quantity -= quantity;
-        if (productDoc.quantity === 0) {
-            productDoc.inStock = false;
+        orderBook.quantity -= quantity;
+        if (orderBook.quantity === 0) {
+            orderBook.inStock = false;
         }
-        yield productDoc.save();
-        const newOrder = yield order_model_1.default.create({
+        yield orderBook.save();
+        const updateOrder = yield order_model_1.default.create({
             email,
-            product: productDoc._id,
+            product: orderBook._id,
             quantity,
             totalPrice
         });
-        const orderData = yield order_service_1.orderService.orderBook(newOrder);
+        const allOrderBook = yield order_service_1.orderService.orderBook(updateOrder);
         res.status(200).json({
             message: 'Order created successfully',
             success: true,
-            data: orderData,
+            data: allOrderBook,
         });
     }
     catch (error) {
@@ -60,7 +62,7 @@ const orderBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
 });
-const orderTotalPrice = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const orderTotalRevenue = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const result = yield order_service_1.orderService.orderTotalPrice();
         res.status(200).json({
@@ -79,6 +81,6 @@ const orderTotalPrice = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
 });
 exports.orderController = {
-    orderBook,
-    orderTotalPrice,
+    createOrderBook,
+    orderTotalRevenue,
 };

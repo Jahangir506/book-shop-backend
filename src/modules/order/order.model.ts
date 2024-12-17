@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose';
-import { TOrder } from './order.interface';
+import { TOrderBook } from './order.interface';
 
-const orderSchema = new Schema<TOrder>(
+const orderSchema = new Schema<TOrderBook>(
   {
     email: {
       type: String,
@@ -34,6 +34,6 @@ const orderSchema = new Schema<TOrder>(
 );
 
 
-const Order = model<TOrder>('Order', orderSchema);
+const Order = model<TOrderBook>('Order', orderSchema);
 
 export default Order;
