@@ -3,8 +3,8 @@ import { orderController } from './order.controller';
 
 const orderRouter = Router();
 
-orderRouter.post('/', orderController.orderBook);
+orderRouter.post('/', orderController.createOrderBook);
 
-orderRouter.get('/revenue', orderController.orderTotalPrice);
+orderRouter.get('/revenue', orderController.orderTotalRevenuePrice);
 
 export default orderRouter;

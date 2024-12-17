@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose';
-import { TBook } from './product.interface';
+import { TProduct } from './product.interface';
 
-const bookSchema = new Schema<TBook>(
+const productSchema = new Schema<TProduct>(
   {
     title: {
       type: String,
@@ -40,7 +40,7 @@ const bookSchema = new Schema<TBook>(
     inStock: {
       type: Boolean,
       required: [true, 'InStock status is required'],
-      default: true
+      default: true,
     },
   },
   {
@@ -48,6 +48,7 @@ const bookSchema = new Schema<TBook>(
   }
 );
 
-const Product = model<TBook>('Product', bookSchema);
+
+const Product = model<TProduct>('Product', productSchema);
 
 export default Product;

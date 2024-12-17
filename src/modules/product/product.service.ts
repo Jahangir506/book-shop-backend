@@ -1,12 +1,12 @@
-import { TBook } from './product.interface';
+import { TProduct } from './product.interface';
 import Product from './product.model';
 
-const createBook = async (bookData: TBook) => {
+const createBook = async (bookData: TProduct) => {
   const product = await Product.create(bookData);
   return product;
 };
 
-const getAllBook = async (query: Record<string, unknown>): Promise<TBook[]> => {
+const getAllBook = async (query: Record<string, unknown>): Promise<TProduct[]> => {
   const product = await Product.find(query);
   return product;
 };
@@ -16,7 +16,7 @@ const getSingleBook = async (id: string) => {
   return product;
 };
 
-const updateBook = async (id: string, data: TBook) => {
+const updateBook = async (id: string, data: TProduct) => {
   const product = await Product.findByIdAndUpdate(id, data, {
     upsert: true,
     new: true,

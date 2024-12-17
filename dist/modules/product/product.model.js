@@ -39,7 +39,7 @@ const bookSchema = new mongoose_1.Schema({
     inStock: {
         type: Boolean,
         required: [true, 'InStock status is required'],
-        default: true
+        default: true,
     },
 }, {
     timestamps: true,

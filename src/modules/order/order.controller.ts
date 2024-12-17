@@ -1,54 +1,52 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
 import Product from '../product/product.model';
 import Order from './order.model';
 import { orderService } from './order.service';
 import orderValidationSchema from './order.validation';
 
-const orderBook = async (req: Request, res: Response): Promise<any> => {
+const createOrderBook = async (req: Request, res: Response): Promise<void> => {
   try {
-    const order = req.body;
-    const zodParseData = orderValidationSchema.parse(order);
+    const orderBookData = req.body;
+    const zodParseData = orderValidationSchema.parse(orderBookData);
 
     const { email, product, quantity, totalPrice } = zodParseData;
 
-    const productDoc = await Product.findById(product)
+    const orderBook = await Product.findById(product)
 
-    if (!productDoc) {
-      return res.status(404).json({
+    if (!orderBook) {
+      res.status(404).json({
         message: "Prodcut not found"
       })
+      return
     }
 
-    if (productDoc.quantity < quantity) {
-      return res.status(404).json({
+    if (orderBook.quantity < quantity) {
+      res.status(404).json({
         message: "Product is out of stock"
       })
+      return
     }
 
-    productDoc.quantity -= quantity
-    if (productDoc.quantity === 0) {
-      productDoc.inStock = false;
+    orderBook.quantity -= quantity
+    if (orderBook.quantity === 0) {
+      orderBook.inStock = false;
     }
 
+    await orderBook.save()
 
-    await productDoc.save()
-
-    const newOrder = await Order.create({
+    const updateOrder = await Order.create({
       email,
-      product: productDoc._id,
+      product: orderBook._id,
       quantity,
       totalPrice
     })
 
-
-
-    const orderData = await orderService.orderBook(newOrder);
+    const allOrderBook = await orderService.orderBook(updateOrder);
 
     res.status(200).json({
       message: 'Order created successfully',
       success: true,
-      data: orderData,
+      data: allOrderBook,
     });
   } catch (error) {
     res.status(200).json({
@@ -60,7 +58,7 @@ const orderBook = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
-const orderTotalPrice = async (req: Request, res: Response): Promise<void> => {
+const orderTotalRevenue = async (req: Request, res: Response): Promise<void> => {
   try {
     const result = await orderService.orderTotalPrice();
 
@@ -80,6 +78,6 @@ const orderTotalPrice = async (req: Request, res: Response): Promise<void> => {
 };
 
 export const orderController = {
-  orderBook,
-  orderTotalPrice,
+  createOrderBook,
+  orderTotalRevenue,
 };

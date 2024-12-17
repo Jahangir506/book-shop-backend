@@ -37,5 +37,5 @@ const orderTotalPrice = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.orderService = {
     orderBook,
-    orderTotalPrice
+    orderTotalPrice,
 };

@@ -11,7 +11,7 @@ app.use(cors());
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
 
-app.get('/', async (req: Request, res: Response,) => {
+app.get('/', async (req: Request, res: Response) => {
   try {
     res.send('📖 Welcome to book shop. Come and buy books.');
   } catch (error) {
@@ -27,7 +27,7 @@ app.all('*', async (req: Request, res: Response, next: NextFunction) => {
     message: 'Route is not found.',
     success: false,
   });
-  next()
+  next();
 });
 
 export default app;

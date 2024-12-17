@@ -1,4 +1,4 @@
-export type TOrder = {
+export type TOrderBook = {
   email: string;
   product: string;
   quantity: number;

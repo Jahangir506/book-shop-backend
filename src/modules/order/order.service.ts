@@ -2,7 +2,7 @@ import { TOrder } from './order.interface';
 import Order from './order.model';
 
 const orderBook = async (orderData: TOrder) => {
-  const orderBook = await Order.create(orderData)
+  const orderBook = await Order.create(orderData);
   return orderBook;
 };
 
@@ -21,10 +21,10 @@ const orderTotalPrice = async () => {
       },
     },
   ]);
-  return result
-}
+  return result;
+};
 
 export const orderService = {
   orderBook,
-  orderTotalPrice
+  orderTotalPrice,
 };

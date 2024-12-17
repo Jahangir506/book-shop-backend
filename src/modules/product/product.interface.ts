@@ -1,5 +1,4 @@
-
-export type TBook = {
+export type TProduct = {
   title: string;
   author: string;
   price: number;
@@ -16,4 +15,3 @@ export type TBook = {
   createdAt?: Date;
   updatedAt?: Date;
 };
-
